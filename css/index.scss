@@ -2,7 +2,10 @@
     font-family: Montserrat;
     src: url(./../fonts/MontserratAlternates-Regular.ttf);
 }
-
+$timing-animation: 2s;
+::selection{
+    background-color: #8686C0
+}
 html{
     font-size: 10px;
     
@@ -15,26 +18,35 @@ header{
     background-color: #8686C0;
     height: 46rem;
     margin-bottom: 14rem;
-    position: relative;
-    ::before, ::after{
-        position: absolute;
-        content: " ";
-        display: block;
-        width: 45%;
-        height: 6rem;
-        background-color: #2e2e2e;
-        bottom: 0;
+    
+    .header-bottom{
+        position: relative;
+        .left-and-right{
+            position: relative; 
+        }
+        ::before, ::after{
+            content: " ";
+            position: absolute;
+            display: block;
+            width: 42.6%;
+            height: 6rem;
+            background-color: #2e2e2e;
+            bottom: 4rem;
+            z-index: 0;
+        }
+        ::before{
+            left: 0;
+            border-radius: 0 6em 0 0;
+        }
+        ::after{
+            right: 0;
+            border-radius: 6em 0 0 0;
+        }
+
     }
-    ::before{
-        left: 0;
-        border-radius: 0 5rem 0 0;
-    }
-    ::after{
-        right: 0;
-        border-radius: 5rem 0 0 0;
-    }
+
     .content{ 
-        height: 100%;
+        height: 83%;
         display: flex;
         align-items: center;
         .logo{
@@ -45,15 +57,113 @@ header{
             height: 331px;
         }
     }
+    .slide-theme{
+        width: 15%;
+        position: relative;
+        background-color: #C4C4C4;
+        height: 12rem;
+        margin: 0 auto;
+        border-radius: 6rem;
+        z-index: 1;
+        .dark-theme{
+
+
+        }
+        .circle{
+            position: absolute;
+            height: 12rem;
+            width: 12rem;
+            border-radius: 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url(./../img/darkTheme_two.svg);
+            animation-name: left-right;
+            animation-duration: $timing-animation;
+            z-index: 0;
+            .month{
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                position: relative;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: 21px center;
+                background-image: url(./../img/darkTheme_one.svg);
+                z-index: 1;
+                //animation-name: reverse-light-theme;
+                animation-duration: $timing-animation;
+                
+
+
+            }
+            .sun{
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                position: absolute;
+                top: 0;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-image: url(./../img/lightTheme.svg);
+                z-index: 2;
+                background-position-x: 15rem;
+                animation-name:sun-theme;
+                animation-duration: $timing-animation;
+            }
+
+        }
+        .light-theme{
+            
+        }
+    }
+}
+@keyframes left-right{
+    0%{
+        left:0
+    }
+    50%{
+        left: 55%;
+    }
+    100%{
+        right: 0;
+        animation-play-state: paused;
+
+    }
+
+}
+@keyframes reverse-light-theme{
+    0%{
+        left: 0;
+        background-position-x: center;
+    }
+    50%{
+        transform: rotate(-13deg);
+        background-position-y: 0.5rem;
+        background-position-x: 0.7rem;
+    }
+    100%{
+        right: 0;
+        z-index: 0;
+        animation-play-state: paused;
+    }
+}
+@keyframes sun-theme{
+    0%{
+        background-position-x: 15rem;
+    }
+    100%{
+        background-position: center;
+    }
 }
 .div_text{
     font-family: Montserrat;
     color: white;
     h3{
-        font-size: 3.6rem;
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
     }
     p{
-        font-size: 2.6rem;
+        font-size: 2.2rem;
     }
 }
 .div_img{
@@ -82,6 +192,9 @@ header{
     max-width: 1440px;
     margin: 0 auto;
 }
+.last_block_div{
+    border-bottom: none;
+}
 footer{
     background-color: #000;
     height: 100%;
@@ -97,7 +210,7 @@ footer{
             flex-direction: row;
             margin-top: 6rem;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             .icon{
                 max-width: 6.4rem;
                 width: 100%;
@@ -105,14 +218,14 @@ footer{
             }
         }
         .email{
-            margin-top: 3.6rem;
+            margin-top: 2.7rem;
             color: white;
-            font-size: 3.7rem;
+            font-size: 1.7rem;
         }
         .license{
-            margin-top: 3.6rem;
+            margin-top: 2.7rem;
             color: white;
-            font-size: 3.7rem;
+            font-size: 1.7rem;
         }
     }
 }
